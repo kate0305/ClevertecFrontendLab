@@ -1,0 +1,21 @@
+.wrapper {
+  padding-bottom: 22px;
+}
+
+.rating {
+  width: 150px;
+  height: 20px;
+  background-image: url('../../assets/images/svg/stars.svg');
+  background-repeat: no-repeat;
+  background-position: left;
+  transition: background-image 0.5s ease;
+  cursor: pointer;
+}
+
+.text {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #a7a7a7;
+}

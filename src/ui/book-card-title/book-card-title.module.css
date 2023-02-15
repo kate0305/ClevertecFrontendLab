@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 28px;
+}
+
+.title {
+  padding-bottom: 8px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.autor {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #727272;
+}
+
+@media (max-width:768px) {
+
+  .title {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .autor {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+  }
+}
+@media (max-width:768px) {
+
+  .title {
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .autor {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: none;
+  }
+}

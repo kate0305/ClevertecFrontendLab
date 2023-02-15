@@ -1,0 +1,41 @@
+.btn {
+  width: 166px;
+  padding: 11px 23px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+  outline: 0;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  border: 1px solid #ff740f;
+  box-shadow: 0px 2px 5px rgba(54, 54, 54, 0.1);
+}
+
+.btn:active {
+  box-shadow: 0px 3px 4px rgba(222, 125, 11, 0.2), 0px 1px 10px rgba(249, 89, 8, 0.2);
+}
+
+.btn:disabled {
+  background: #EBEBEB;
+}
+
+@media (max-width:320px) {
+
+  .btn {
+    width: 100%;
+  }
+}
+
+
+

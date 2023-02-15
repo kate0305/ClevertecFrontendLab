@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 0 6px;
+  padding-top: 62px;
+  padding-bottom: 62px;
+}
+
+.navBar {
+  width: 279px;
+}
+
+.content {
+  width: 100%;
+  max-width: calc(100% - 279px);
+}
+
+@media (max-width:768px) {
+
+  .wrapper {
+    display: block;
+    padding-top: 32px;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width:320px) {
+
+  .wrapper {
+    padding-top: 0;
+    padding-bottom: 24px;
+  }
+}

@@ -1,0 +1,11 @@
+.img {
+  width: 174px;
+  padding-bottom: 16px;
+}
+
+@media (max-width:320px) {
+
+  .img {
+    align-self: center;
+  }
+}
