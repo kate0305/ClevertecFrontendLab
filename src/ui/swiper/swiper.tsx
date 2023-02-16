@@ -1,11 +1,8 @@
 /* eslint-disable simple-import-sort/imports */
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { FreeMode, Navigation, Pagination, Scrollbar, Thumbs } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperClass from 'swiper/types/swiper-class';
-
-import { booksFoto } from '../../data/books-photos';
 
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -15,10 +12,11 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/thumbs';
 import './swiper.css';
 
-export const Slider = () => {
-  const { bookID } = useParams();
-  const foto = booksFoto.find((i) => i.id === bookID);
-  const fotos = foto?.images as string[];
+type SliderProps = {
+  photos: string[];
+};
+
+export const Slider = ({ photos }: SliderProps) => {
 
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass>();
 
@@ -36,7 +34,7 @@ export const Slider = () => {
         className='mainSwiper'
         data-test-id='slide-big'
       >
-        {fotos.map((item) => (
+        {photos.map((item) => (
           <SwiperSlide key={Math.random()}>
             <img src={item} alt='book' />
           </SwiperSlide>
@@ -52,7 +50,7 @@ export const Slider = () => {
         scrollbar={true}
         className='swiperThumbs'
       >
-        {fotos.map((item) => (
+        {photos.map((item) => (
           <SwiperSlide key={Math.random()} data-test-id='slide-mini'>
             <img src={item} alt='book' />
           </SwiperSlide>
