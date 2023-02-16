@@ -5,9 +5,9 @@ import classnames from 'classnames/bind';
 import { useOutsideAlerter } from '../../custom-hooks';
 import data from '../../data/books.json';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { booksAPI } from '../../services/book-sevice'
 import { closeMenu, toggleMenu } from '../../store/reducers/burger-menu-slice';
 import { PAGE_PATHS } from '../../utils/consts';
-import { NavBarLinks } from '../../utils/types/navbar/enums';
 import { ButtonDropdown } from '../buttons/btn-dropdown';
 
 import classes from './nav-bar.module.css';
@@ -15,6 +15,7 @@ import classes from './nav-bar.module.css';
 const style = classnames.bind(classes);
 
 export const NavBar = () => {
+  const { data: categories, error, isLoading } = booksAPI.useGetCategoriesQuery();
   const navMenu = useRef<HTMLElement>(null);
   const isBurgerOpen = useAppSelector((state) => state.burgerReduser.isMenuOpen);
   const dispatch = useAppDispatch();
@@ -30,16 +31,13 @@ export const NavBar = () => {
   };
 
   const [width, setWidth] = useState(window.innerWidth);
-//   const breakpoint = 700;
 
   useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
 
-    // subscribe to window resize event "onComponentDidMount"
     window.addEventListener('resize', handleResizeWindow);
 
     return () => {
-      // unsubscribe "onComponentDestroy"
       window.removeEventListener('resize', handleResizeWindow);
     };
   }, []);
@@ -54,7 +52,6 @@ export const NavBar = () => {
     hidden: !isOpen,
   });
 
-  const arrNavLinks = Object.keys(data);
   const amountBooks = Object.values(data);
 
   useOutsideAlerter(navMenu, close, isBurgerOpen);
@@ -76,12 +73,15 @@ export const NavBar = () => {
           <NavLink to='/books/all' className={setActiveGenre}>
             Все книги
           </NavLink>
-          {arrNavLinks.map((link, index) => (
-            <NavLink to={`/books/${link}`} key={Math.random()} className={setActiveGenre} onClick={handle}>
-              {NavBarLinks[index]}
-              <span className={classes.amount}>{amountBooks[index].length}</span>
-            </NavLink>
-          ))}
+          {isLoading && <h1>LOADING</h1>}
+          {error && <h1>ERROR</h1>}
+          {categories &&
+            categories.map((category, index) => (
+              <NavLink to={`/books/${category.path}`} key={`${category.id}`} className={setActiveGenre} onClick={handle}>
+                {category.name}
+                <span className={classes.amount}>{amountBooks[index].length}</span>
+              </NavLink>
+            ))}
         </ul>
       </div>
       <NavLink
