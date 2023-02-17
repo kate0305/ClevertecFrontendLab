@@ -3,4 +3,4 @@ import { BookPhoto } from '../../utils/types/book';
 
 import classes from './book-img.module.css';
 
-export const BookImg = ({ url }: BookPhoto) => <img className={classes.img} src={url ? url : noImage} alt='book foto' />;
+export const BookImg = ({ url }: BookPhoto) => <img className={classes.img} src={url ? url : noImage} alt='book foto' loading='lazy'/>;

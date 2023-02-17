@@ -1,9 +1,11 @@
 .img {
   width: 174px;
+  height: 242px;
   padding-bottom: 16px;
+  object-fit: contain;
 }
 
-@media (max-width:320px) {
+@media (max-width: 320px) {
 
   .img {
     align-self: center;
