@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useParams } from 'react-router-dom';
 
 import { booksAPI } from '../../services/book-sevice';
 import { ButtonBook } from '../../ui/buttons/btn-book';
 import { Comments } from '../../ui/comments';
 import { BookMainPhoto } from '../../ui/photo';
+import { Preloader } from '../../ui/preloader';
+import { Toast } from '../../ui/toast';
 
 import classes from './book-page.module.css';
 
 export const BookPage = () => {
   const { bookID } = useParams();
   const { data: bookInfo, error, isLoading } = booksAPI.useGetBookQuery(bookID as string);
+  const [showToast, setShowToast] = useState(false);
+
+
+  useEffect(() => {
+      if (error) setShowToast(true);
+    }, [error]);
+
+    const closeToast = () => setShowToast(false);
+
+    if (isLoading) return <Preloader />
+  const domElement = document.getElementById('app') as HTMLElement;
 
   return (
     <React.Fragment>
-      {isLoading && <h1>LOADING</h1>}
-      {error && <h1>ERROR</h1>}
+      {showToast && createPortal(<Toast onClose={closeToast} />, domElement)}
       {bookInfo && (
         <section className={classes.wrapper}>
           <div className={classes.routing}>
@@ -23,7 +36,7 @@ export const BookPage = () => {
             программистов и любопытствующих
           </div>
           <div className={classes.mainInfo}>
-            <BookMainPhoto images={bookInfo.images}/>
+            <BookMainPhoto images={bookInfo.images} />
             <div className={classes.wrap}>
               <div className={classes.bookData}>
                 <h1 className={classes.title}>{bookInfo.title}</h1>
