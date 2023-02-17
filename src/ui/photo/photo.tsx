@@ -1,5 +1,4 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 
 import img from '../../assets/images/jpeg/book-no-foto.jpg';
 import { BookPhoto } from '../../utils/types/book';
@@ -20,7 +19,7 @@ export const BookMainPhoto = ({ images }: BookPhotoProps) => {
       {urls && (urls.length > 1 ? (
         <Slider photos={urls} />
       ) : (
-        <img className={classes.bookFoto} src={`https://strapi.cleverland.by${urls[0]}`} alt='book' />
+        <img className={classes.bookFoto} src={urls[0]} alt='book' />
       ))}
     </React.Fragment>
   );

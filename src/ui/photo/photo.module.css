@@ -1,7 +1,8 @@
 .bookFoto {
   display: block;
-  height: 100%;
-  width: 100%;
+  width: 445px;
+  height: 594px;
+  object-fit: contain;
 }
 
 @media (max-width: 768px) {
