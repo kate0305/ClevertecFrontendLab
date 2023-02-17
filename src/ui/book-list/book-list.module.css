@@ -11,14 +11,14 @@
   gap: 0 16px;
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
 
   .tile {
     gap: 32px 35px;
   }
 }
 
-@media (max-width:320px) {
+@media (max-width: 320px) {
 
   .tile {
     justify-content: center;

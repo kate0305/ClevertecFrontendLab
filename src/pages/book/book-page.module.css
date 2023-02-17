@@ -1,26 +1,14 @@
 .wrapper {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 42px 0;
 }
 
-.routing {
-  width: 100%;
-  padding: 20px 0;
-  background: #f9f9fa;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  color: #a7a7a7;
-}
-
-.separator {
-  width: 24px;
-  padding: 0 4px;
-}
-
 .mainInfo {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
   display: flex;
   align-items: flex-start;
   gap: 0 30px;
@@ -109,6 +97,9 @@
 }
 
 .bookDop {
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 62px 0;
@@ -127,7 +118,7 @@
 }
 
 .col12 {
-  flex-basis: 329px;
+  /* flex-basis: 329px; */
   flex-shrink: 1;
 }
 
@@ -170,7 +161,6 @@
 
   .wrapper {
     gap: 52px 0;
-    /* padding-bottom: 48px; */
   }
 
   .mainInfo {
@@ -178,6 +168,7 @@
     align-items: flex-start;
     gap: 0 30px;
     margin-bottom: 0;
+    padding: 0 64px;
   }
 
   .discription {
@@ -210,6 +201,10 @@
 
   .subTitle::after {
     width: 305px;
+  }
+
+  .bookDop {
+    padding: 0 64px;
   }
 
   .columns {
@@ -251,6 +246,8 @@
     flex-wrap: nowrap;
     flex-direction: column;
     gap: 0 30px;
+    padding: 0 16px;
+    /* padding: 0 64px; */
   }
 
   .title {
@@ -280,6 +277,7 @@
 
   .bookDop {
     gap: 42px 0;
+    padding: 0 16px;
   }
 
   .bookData {

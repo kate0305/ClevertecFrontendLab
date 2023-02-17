@@ -1,3 +1,18 @@
 .wrapper {
+
   min-height: calc(100vh - 114px);
+}
+
+/* @media (max-width: 768px) {
+
+  .wrapper{
+    padding: 0 64px;
+  }
+} */
+
+@media (max-width: 320px) {
+
+  .wrapper{
+    padding: 0 16px;
+  }
 }

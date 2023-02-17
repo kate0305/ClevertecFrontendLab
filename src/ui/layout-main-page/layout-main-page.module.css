@@ -2,8 +2,9 @@
   display: flex;
   justify-content: space-between;
   gap: 0 6px;
-  padding-top: 62px;
-  padding-bottom: 62px;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 62px 20px;
 }
 
 .navBar {
@@ -15,11 +16,11 @@
   max-width: calc(100% - 279px);
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
 
   .wrapper {
     display: block;
-    padding-top: 32px;
+    padding: 32px 64px 0 64px;
   }
 
   .content {
@@ -27,10 +28,9 @@
   }
 }
 
-@media (max-width:320px) {
+@media (max-width: 320px) {
 
   .wrapper {
-    padding-top: 0;
-    padding-bottom: 24px;
+    padding: 0 16px 24px 16px;
   }
 }

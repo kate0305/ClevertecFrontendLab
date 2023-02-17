@@ -1,3 +1,10 @@
+.wrapper {
+  min-height: 100vh;
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .title {
   padding-bottom: 32px;
   font-weight: 700;
@@ -30,7 +37,18 @@
   line-height: 24px;
 }
 
-@media (max-width:320px) {
+@media (max-width: 768px) {
+
+  .wrapper{
+    padding: 0 64px;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .wrapper{
+    padding: 0 16px;
+  }
 
   .title {
     font-size: 18px;

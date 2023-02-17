@@ -1,5 +1,7 @@
 .header {
   width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,10 +44,11 @@
     display: none;
   }
 }
+
 @media (max-width: 768px) {
 
   .header {
-    padding: 0;
+    padding: 0 64px;
     justify-content: start;
   }
 
@@ -58,6 +61,10 @@
 }
 
 @media (max-width: 320px) {
+
+  .header {
+    padding: 0 16px;
+  }
 
   .burger {
     width: 24px;
