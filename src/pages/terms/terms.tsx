@@ -11,7 +11,7 @@ export const Terms = ({ title }: TermsProps) => {
     };
 
     return (
-      <div>
+      <div className={classes.wrapper}>
         <h1 className={classes.title}>{setTitle(title)}</h1>
         <ol className={classes.list}>
           <li className={classes.subtitle}>

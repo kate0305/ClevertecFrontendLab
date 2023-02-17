@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Outlet, useOutletContext } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { booksAPI } from '../../services/book-sevice';
 import { ListOfBooks } from '../../utils/types/book';
@@ -11,14 +11,9 @@ import { Toast } from '../toast';
 
 import classes from './layout-main-page.module.css';
 
-type ContextType = {
-  booksData: ListOfBooks[];
-  categoriesData: CategoriesList[];
-};
-
 export const LayoutMainPage = () => {
-  const { data: booksData, isError: errBooks, isLoading: loadBooks } = booksAPI.useGetListBooksQuery('');
-  const { data: categoriesData, isError: errCategories, isLoading: loadCategories } = booksAPI.useGetCategoriesQuery();
+  const { isError: errBooks, isLoading: loadBooks } = booksAPI.useGetListBooksQuery('');
+  const { isError: errCategories, isLoading: loadCategories } = booksAPI.useGetCategoriesQuery();
   const [showToast, setShowToast] = useState(false);
   const closeToast = () => setShowToast(false);
   const domElement = document.getElementById('app') as HTMLElement;
@@ -28,12 +23,10 @@ export const LayoutMainPage = () => {
 
   return (
     <main className={classes.wrapper}>
-      {categoriesData && <NavBar categories={categoriesData} />}
+      <NavBar />
       <div className={classes.content}>
-        <Outlet context={{ booksData, categoriesData }} />
+        <Outlet />
       </div>
     </main>
   );
 };
-
-export const useBooksData = () => useOutletContext<ContextType>();

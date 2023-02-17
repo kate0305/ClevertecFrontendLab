@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { useParams } from 'react-router-dom';
 
 import { booksAPI } from '../../services/book-sevice';
+import { BreadCrumbs } from '../../ui/bread-crumbs';
 import { ButtonBook } from '../../ui/buttons/btn-book';
 import { Comments } from '../../ui/comments';
 import { BookMainPhoto } from '../../ui/photo';
@@ -12,9 +13,11 @@ import { Toast } from '../../ui/toast';
 import classes from './book-page.module.css';
 
 export const BookPage = () => {
-  const { bookID } = useParams();
+  const { category, bookID } = useParams();
   const { data: bookInfo, error, isLoading } = booksAPI.useGetBookQuery(bookID as string);
+  const { data: categoriesData } = booksAPI.useGetCategoriesQuery();
   const [showToast, setShowToast] = useState(false);
+  const currentCategory = categoriesData?.find((i) => i.path === category)?.name;
 
 
   useEffect(() => {
@@ -31,10 +34,7 @@ export const BookPage = () => {
       {showToast && createPortal(<Toast onClose={closeToast} />, domElement)}
       {bookInfo && (
         <section className={classes.wrapper}>
-          <div className={classes.routing}>
-            Бизнес книги <span className={classes.separator}>/</span> Грокаем алгоритмы. Иллюстрированное пособие для
-            программистов и любопытствующих
-          </div>
+          <BreadCrumbs title={bookInfo.title} currentCategory={currentCategory} />
           <div className={classes.mainInfo}>
             <BookMainPhoto images={bookInfo.images} />
             <div className={classes.wrap}>

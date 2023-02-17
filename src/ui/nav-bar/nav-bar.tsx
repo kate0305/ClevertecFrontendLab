@@ -5,20 +5,18 @@ import classnames from 'classnames/bind';
 import { useOutsideAlerter } from '../../custom-hooks';
 import data from '../../data/books.json';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { booksAPI } from '../../services/book-sevice';
 import { closeMenu, toggleMenu } from '../../store/reducers/burger-menu-slice';
 import { PAGE_PATHS } from '../../utils/consts';
-import { CategoriesList } from '../../utils/types/navbar';
 import { ButtonDropdown } from '../buttons/btn-dropdown';
 
 import classes from './nav-bar.module.css';
 
 const style = classnames.bind(classes);
 
-type NavBarProps = {
-  categories: CategoriesList[]
-}
+export const NavBar = () => {
+  const { data: categoriesData } = booksAPI.useGetCategoriesQuery();
 
-export const NavBar = ({ categories }: NavBarProps) => {
   const navMenu = useRef<HTMLElement>(null);
   const isBurgerOpen = useAppSelector((state) => state.burgerReduser.isMenuOpen);
   const dispatch = useAppDispatch();
@@ -76,14 +74,9 @@ export const NavBar = ({ categories }: NavBarProps) => {
           <NavLink to='/books/all' className={setActiveGenre}>
             Все книги
           </NavLink>
-          {categories &&
-            categories.map(({ id, path, name }, index) => (
-              <NavLink
-                to={`/books/${path}`}
-                key={`${id}`}
-                className={setActiveGenre}
-                onClick={handle}
-              >
+          {categoriesData &&
+            categoriesData.map(({ id, path, name }, index) => (
+              <NavLink to={`/books/${path}`} key={`${id}`} className={setActiveGenre} onClick={handle}>
                 {name}
                 <span className={classes.amount}>{amountBooks[index].length}</span>
               </NavLink>

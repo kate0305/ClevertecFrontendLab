@@ -8,7 +8,7 @@ import classes from './app.module.css';
 const store = setupStore();
 
 export const App = () => (
-  <div id='app' className={classes.wrapper}>
+  <div id='app' >
     <Provider store={store}>
       <AppRouter />
     </Provider>
