@@ -1,5 +1,5 @@
 .bookFoto {
-  display: block;
+  flex-shrink: 0;
   width: 445px;
   height: 594px;
   object-fit: contain;
