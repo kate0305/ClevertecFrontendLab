@@ -14,7 +14,7 @@ export const FilterButton = ({ isHidden }: FilterInputProps) => {
 
 return (
   <div>
-    <select className={className} name='rating' id='rating' value='По рейтингу'>
+    <select className={className} name='rating' id='rating' value='По рейтингу' disabled={true}>
       <option value='По рейтингу'>По рейтингу</option>
     </select>
   </div>
