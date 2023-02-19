@@ -9,7 +9,7 @@
   border-radius: 10px;
 }
 
-.list {
+/* .list {
   width: 100%;
   display: flex;
 }
@@ -22,16 +22,24 @@
 .buttons {
   display: flex;
   justify-content: space-between;
+} */
+
+.noRating {
+  padding-bottom: 22px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #A7A7A7;
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
 
   .tile {
     padding: 8px 8px 16px 8px;
   }
 }
 
-@media (max-width:320px) {
+@media (max-width: 320px) {
 
   .tile {
     width: 100%;

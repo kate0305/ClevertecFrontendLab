@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 
 import { booksFoto } from '../../../data/books-photos';
-import { ButtonBook } from '../../buttons/btn-book';
+import { Button } from '../../buttons/btn-primary';
 import { Rating } from '../../rating';
 
 import classes from './book-card-list.module.css';
@@ -25,7 +25,7 @@ export const BookCardList = () => {
               </div>
               <div className={classes.buttons}>
                 <Rating />
-                <ButtonBook />
+                <Button text='Забронировать' className='btnCard' />
               </div>
             </div>
           </div>
