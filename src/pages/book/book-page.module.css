@@ -7,7 +7,7 @@
 
 .mainInfo {
   width: 100%;
-  max-width: 1150px;
+  max-width: 1110px;
   margin: 0 auto;
   display: flex;
   align-items: flex-start;
@@ -83,22 +83,9 @@
   padding-bottom: 0;
 }
 
-.stars {
-  width: 168px;
-  height: 24px;
-  background-image: url('../../assets/images/svg/stars.svg');
-  background-repeat: no-repeat;
-  background-position: left;
-  padding-left: 175px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 28px;
-}
-
 .bookDop {
   width: 100%;
-  max-width: 1150px;
+  max-width: 1110px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -290,15 +277,6 @@
     font-size: 12px;
     line-height: 18px;
     padding-bottom: 0;
-  }
-
-  .stars {
-    display: block;
-    text-align: center;
-    background-size: 218px;
-    height: 34px;
-    padding-left: 242px;
-    line-height: 34px;
   }
 
   .info,

@@ -11,10 +11,54 @@
   gap: 0 16px;
 }
 
+.wrapperTile {
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 8px 16px 8px;
+  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
+    0px 1px 5px rgba(191, 196, 201, 0.24);
+  border-radius: 10px;
+}
+
+.wrapperList {
+  width: 100%;
+  max-width: 825px;
+  display: flex;
+  padding: 24px 24px 24px 16px;
+  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
+    0px 1px 5px rgba(191, 196, 201, 0.24);
+  border-radius: 12px;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.noRating {
+  padding-bottom: 22px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #A7A7A7;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (max-width: 768px) {
 
   .tile {
     gap: 32px 35px;
+  }
+
+  .wrapperTile {
+    padding: 8px 8px 16px 8px;
   }
 }
 
@@ -23,5 +67,19 @@
   .tile {
     justify-content: center;
     gap: 16px 0;
+  }
+
+  .wrapperTile {
+    width: 100%;
+    padding: 8px 16px 16px 16px;
+  }
+
+  .wrapperList {
+    padding: 16px 16px 16px 8px;
+    border-radius: 10px;
+  }
+
+  .buttons {
+    flex-direction: column;
   }
 }

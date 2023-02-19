@@ -43,7 +43,7 @@ interface UserData {
   avatarUrl: string | null;
 }
 
-interface CommentData {
+export interface CommentData {
   id: number;
   rating: number;
   text: string | null;
