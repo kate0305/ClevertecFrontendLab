@@ -42,16 +42,11 @@ export const BookPage = () => {
               <div className={classes.bookData}>
                 <h1 className={classes.title}>{bookInfo.title}</h1>
                 <p className={classes.autor}>{bookInfo.authors}</p>
-                {/* <ButtonBook /> */}
                 <Button text='Забронировать' className='btnBook' />
               </div>
               <div className={classes.discription}>
                 <h5 className={classes.subTitle}>О книге</h5>
                 <p className={classes.text}>{bookInfo.description}</p>
-                {/* <p className={classes.textLast}>
-                  Откройте великолепно иллюстрированную книгу и вы сразу поймете, что алгоритмы — это просто. А грокать
-                  алгоритмы — это веселое и увлекательное занятие.
-                </p> */}
               </div>
             </div>
           </div>

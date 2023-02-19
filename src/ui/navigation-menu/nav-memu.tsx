@@ -14,10 +14,6 @@ const style = classnames.bind(classes);
 export const NavMenu = ({ setView }: NavMenuProps) => {
   const [isOpenSearch, setOpenSearch] = useState<boolean>(false);
 
-//   const handleClick = () => {
-//     setOpenSearch(true);
-//   };
-
   const className = style({
     container: true,
     hidden: isOpenSearch,

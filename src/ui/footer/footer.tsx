@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import { SocialLinkList } from '../social-link-list'
 
 import classes from './footer.module.css';

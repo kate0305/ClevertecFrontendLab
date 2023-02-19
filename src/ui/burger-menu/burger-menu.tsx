@@ -30,7 +30,6 @@ export const BurgerMenu = () => {
       onKeyDown={handle}
       role='button'
       tabIndex={0}
-      //   ref={navMenu}
     >
       <span />
     </div>
