@@ -35,60 +35,14 @@
   color: #a7a7a7;
 }
 
-.review {
-  display: flex;
-  flex-direction: column;
-  gap: 16px 0;
-  padding-bottom: 42px;
-}
-
-.reviewsWrapper {
-  margin-bottom: 42px;
-  transition: display 0.3s ease-in-out;
-}
-
-.userData,
-.userDescription {
-  display: flex;
-  align-items: center;
-  gap: 0 24px;
-}
-
-.userData {
-  width: 306px;
-}
-
-.name,
-.date {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #727272;
-}
-
-.reviewStars {
-  width: 168px;
-  height: 24px;
-  background-image: url('../../assets/images/svg/stars.svg');
-  background-repeat: no-repeat;
-  background-position: left;
-  padding-left: 175px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 28px;
-}
-
-.reviewText {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  /* padding-bottom: 42px; */
-  padding-bottom: 0px;
-}
-
 @media (max-width: 768px) {
+
+  .reviewsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    margin-bottom: 20px;
+  }
 
   .title {
     font-weight: 600;
@@ -99,55 +53,19 @@
   .title::after {
     width: 305px;
   }
+}
 
-  @media (max-width: 320px) {
+@media (max-width: 320px) {
 
-    .title {
-      margin-bottom: 8px;
-      padding-bottom: 8px;
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 28px;
-    }
+  .title {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+  }
 
-    .title::after {
-      width: 288px;
-    }
-
-    .reviewsWrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 42px;
-      margin-bottom: 20px;
-    }
-
-    .review {
-      padding-bottom: 0;
-    }
-
-    .userData {
-      width: 250px;
-    }
-
-    .userDescription {
-      flex-direction: column;
-      align-items: start;
-    }
-
-    .name,
-    .date {
-      font-size: 15px;
-      line-height: 20px;
-    }
-
-    .reviewStars {
-      background-size: 152px;
-      height: 24px;
-    }
-
-    .reviewText {
-      font-size: 15px;
-      line-height: 20px;
-    }
+  .title::after {
+    width: 288px;
   }
 }
