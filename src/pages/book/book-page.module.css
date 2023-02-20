@@ -1,5 +1,5 @@
 .wrapper {
-  min-height: 100vh;
+  min-height: calc(100vh - 161px);
   display: flex;
   flex-direction: column;
   gap: 42px 0;

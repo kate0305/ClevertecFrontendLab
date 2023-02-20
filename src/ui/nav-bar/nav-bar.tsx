@@ -16,7 +16,6 @@ const style = classnames.bind(classes);
 
 export const NavBar = () => {
   const { data: categoriesData } = booksAPI.useGetCategoriesQuery();
-
   const navMenu = useRef<HTMLElement>(null);
   const isBurgerOpen = useAppSelector((state) => state.burgerReduser.isMenuOpen);
   const dispatch = useAppDispatch();
@@ -68,20 +67,21 @@ export const NavBar = () => {
           onClick={toggleBooksList}
         >
           Витрина книг
-          <ButtonDropdown isOpen={isOpen} isColor={true} />
+          {categoriesData ? <ButtonDropdown isOpen={isOpen} isColor={true} /> : ''}
         </NavLink>
-        <ul className={list} data-test-id={width < 800 ? 'burger-books' : 'navigation-books'}>
-          <NavLink to='/books/all' className={setActiveGenre}>
-            Все книги
-          </NavLink>
-          {categoriesData &&
-            categoriesData.map(({ id, path, name }, index) => (
+        {categoriesData && (
+          <ul className={list} data-test-id={width < 800 ? 'burger-books' : 'navigation-books'}>
+            <NavLink to='/books/all' className={setActiveGenre}>
+              Все книги
+            </NavLink>
+            {categoriesData.map(({ id, path, name }, index) => (
               <NavLink to={`/books/${path}`} key={`${id}`} className={setActiveGenre} onClick={handle}>
                 {name}
                 <span className={classes.amount}>{amountBooks[index].length}</span>
               </NavLink>
             ))}
-        </ul>
+          </ul>
+        )}
       </div>
       <NavLink
         to={PAGE_PATHS.termsOfUsePagePath}

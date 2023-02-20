@@ -33,30 +33,32 @@ export const BookPage = () => {
   return (
     <React.Fragment>
       {showToast && createPortal(<Toast onClose={closeToast} />, domElement)}
-      {bookInfo && (
-        <section className={classes.wrapper}>
-          <BreadCrumbs title={bookInfo.title} currentCategory={currentCategory} />
-          <div className={classes.mainInfo}>
-            <BookMainPhoto images={bookInfo.images} />
-            <div className={classes.wrap}>
-              <div className={classes.bookData}>
-                <h1 className={classes.title}>{bookInfo.title}</h1>
-                <p className={classes.autor}>{bookInfo.authors}</p>
-                <Button text='Забронировать' className='btnBook' />
-              </div>
-              <div className={classes.discription}>
-                <h5 className={classes.subTitle}>О книге</h5>
-                <p className={classes.text}>{bookInfo.description}</p>
+      <section className={classes.wrapper}>
+        {bookInfo && (
+          <React.Fragment>
+            <BreadCrumbs title={bookInfo.title} currentCategory={currentCategory} />
+            <div className={classes.mainInfo}>
+              <BookMainPhoto images={bookInfo.images} />
+              <div className={classes.wrap}>
+                <div className={classes.bookData}>
+                  <h1 className={classes.title}>{bookInfo.title}</h1>
+                  <p className={classes.autor}>{bookInfo.authors}</p>
+                  <Button text='Забронировать' className='btnBook' />
+                </div>
+                <div className={classes.discription}>
+                  <h5 className={classes.subTitle}>О книге</h5>
+                  <p className={classes.text}>{bookInfo.description}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className={classes.bookDop}>
-            <BookRating rating={bookInfo.rating} />
-            <BookDetailedInfo bookInfo={bookInfo} currentCategory={currentCategory} />
-            <Comments comments={bookInfo.comments} />
-          </div>
-        </section>
-      )}
+            <div className={classes.bookDop}>
+              <BookRating rating={bookInfo.rating} />
+              <BookDetailedInfo bookInfo={bookInfo} currentCategory={currentCategory} />
+              <Comments comments={bookInfo.comments} />
+            </div>
+          </React.Fragment>
+        )}
+      </section>
     </React.Fragment>
   );
 };

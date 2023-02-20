@@ -38,14 +38,6 @@
   flex-direction: column;
 }
 
-.noRating {
-  padding-bottom: 22px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  color: #A7A7A7;
-}
-
 .buttons {
   display: flex;
   justify-content: space-between;
