@@ -16,14 +16,14 @@ import classes from './book-page.module.css';
 
 export const BookPage = () => {
   const { category, bookID } = useParams();
-  const { data: bookInfo, error, isLoading } = booksAPI.useGetBookQuery(bookID as string);
+  const { data: bookInfo, isError, isLoading } = booksAPI.useGetBookQuery(bookID as string);
   const { data: categoriesData } = booksAPI.useGetCategoriesQuery();
   const [showToast, setShowToast] = useState(false);
   const currentCategory = categoriesData?.find((i) => i.path === category)?.name;
 
   useEffect(() => {
-    if (error) setShowToast(true);
-  }, [error]);
+    if (isError) setShowToast(true);
+  }, [isError]);
 
   const closeToast = () => setShowToast(false);
 
