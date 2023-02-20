@@ -1,0 +1,296 @@
+.wrapper {
+  min-height: calc(100vh - 161px);
+  display: flex;
+  flex-direction: column;
+  gap: 42px 0;
+}
+
+.mainInfo {
+  width: 100%;
+  max-width: 1110px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 0 30px;
+}
+
+.bookData {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 62px;
+  align-self: flex-start;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  padding-bottom: 24px;
+}
+
+.autor {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: #a7a7a7;
+  padding-bottom: 32px;
+}
+
+.discription {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  grid-column-start: 2;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
+
+.subTitle {
+  position: relative;
+  margin: 0;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+}
+
+.subTitle::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 350px;
+  height: 1px;
+  content: '';
+  background: #ebebeb;
+}
+
+.text,
+.textLast {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding-bottom: 42px;
+}
+
+.textLast {
+  padding-bottom: 0;
+}
+
+.bookDop {
+  width: 100%;
+  max-width: 1110px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 62px 0;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 0 146px;
+}
+
+.col12,
+.col34 {
+  display: flex;
+  gap: 0 70px;
+}
+
+.col12 {
+  flex-shrink: 1;
+}
+
+.col34 {
+  flex-basis: 635px;
+  flex-shrink: 1;
+}
+
+.column1,
+.column3 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px 0;
+  max-width: 120px;
+}
+
+.column2,
+.column4 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px 0;
+}
+
+.info {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #a7a7a7;
+}
+
+.discriphion {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@media (max-width: 768px) {
+
+  .wrapper {
+    gap: 52px 0;
+  }
+
+  .mainInfo {
+    display: flex;
+    align-items: flex-start;
+    gap: 0 30px;
+    margin-bottom: 0;
+    padding: 0 64px;
+  }
+
+  .discription {
+    margin-left: -166px;
+  }
+
+  .bookData {
+    flex-basis: 472px;
+    padding-bottom: 48px;
+  }
+
+  .title {
+    font-size: 24px;
+    line-height: 30px;
+    padding-bottom: 32px;
+  }
+
+  .autor {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    padding-bottom: 32px;
+  }
+
+  .subTitle {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .subTitle::after {
+    width: 305px;
+  }
+
+  .bookDop {
+    padding: 0 64px;
+  }
+
+  .columns {
+    gap: 0 30px;
+  }
+
+  .col12,
+  .col34 {
+    gap: 0 33px;
+  }
+
+  .col12 {
+    flex-basis: 305px;
+  }
+
+  .col34 {
+    flex-basis: 305px;
+  }
+
+  .info,
+  .discriphion {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .wrapper {
+    gap: 42px 0;
+    padding-bottom: 20px;
+  }
+
+  .discription {
+    margin-left: 0;
+  }
+
+  .mainInfo {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    gap: 0 30px;
+    padding: 0 16px;
+  }
+
+  .title {
+    font-size: 18px;
+    line-height: 28px;
+    padding-bottom: 8px;
+  }
+
+  .autor {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    padding-bottom: 42px;
+  }
+
+  .subTitle {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .subTitle::after {
+    width: 288px;
+  }
+
+  .bookDop {
+    gap: 42px 0;
+    padding: 0 16px;
+  }
+
+  .bookData {
+    flex-basis: auto;
+    padding-bottom: 42px;
+  }
+
+  .text,
+  .textLast {
+    font-size: 12px;
+    line-height: 18px;
+    padding-bottom: 0;
+  }
+
+  .info,
+  .discriphion {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .columns {
+    flex-direction: column;
+    gap: 16px 0;
+  }
+
+  .col12,
+  .col34 {
+    gap: 0 39px;
+    flex-basis: auto;
+  }
+}

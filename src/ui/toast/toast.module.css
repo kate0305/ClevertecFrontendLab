@@ -1,0 +1,97 @@
+.wrapper {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  transform: translate(-50%);
+  margin: auto;
+  max-width: 100%;
+  width: 1110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 30.5px;
+  background: #feebea;
+  border: 1.5px solid #f42c4f;
+  border-radius: 5px;
+  animation-name: animatemodal;
+  animation-duration: 0.3s;
+}
+
+.text {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 56px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  background-image: url('https://raw.githubusercontent.com/kate0305/library-image-data/e7260fc1cea607ecccd47890d4f7ad2533594b28/images/svg/attention.svg');
+  background-position: left;
+  background-size: 24px;
+  background-repeat: no-repeat;
+}
+
+.btn {
+  width: 24px;
+  height: 24px;
+  background: url('https://raw.githubusercontent.com/kate0305/library-image-data/e7260fc1cea607ecccd47890d4f7ad2533594b28/images/svg/close.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  outline: 0;
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes animatemodal {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .wrapper {
+    top: 62px;
+    width: 640px;
+    padding-right: 14.5px;
+    padding-left: 14.5px;
+  }
+
+  .text {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 14px;
+    line-height: 18px;
+    padding-left: 36px;
+  }
+
+  .btn {
+    width: 16px;
+    height: 16px;
+    align-self: start;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .wrapper {
+    top: 56px;
+    width: 280px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 0 10px;
+  }
+
+  .text {
+    width: 222px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 14px;
+    line-height: 18px;
+    background-position: left top;
+  }
+}

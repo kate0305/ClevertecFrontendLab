@@ -1,0 +1,25 @@
+.dropdown {
+  width: 25px;
+  height: 24px;
+  margin-top: 2px;
+  -webkit-mask: url('https://raw.githubusercontent.com/kate0305/library-image-data/53a8a3f3a76b9363ad65671048fdc44e2953d08a/images/svg/btn-down.svg') no-repeat 100% 100%;
+  mask: url('https://raw.githubusercontent.com/kate0305/library-image-data/53a8a3f3a76b9363ad65671048fdc44e2953d08a/images/svg/btn-down.svg') no-repeat 100% 100%;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  background: #363636;
+  outline: 0;
+  border: none;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.open {
+  transform: rotate(180deg);
+}
+
+.color {
+  background: linear-gradient(231.58deg, #F83600 -53.35%, #F9D423 297.76%);
+}
+
+
+

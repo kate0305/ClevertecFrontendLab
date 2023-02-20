@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 58px;
+  height: 58px;
+  margin-left: 16px;
+  border-radius: 50%;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.1px;
+  color: #363636;
+}

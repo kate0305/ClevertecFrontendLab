@@ -1,0 +1,80 @@
+.burger {
+  visibility: hidden;
+}
+
+@media (max-width: 1100px) {
+
+  .burger {
+    visibility: visible;
+    position: relative;
+    width: 26px;
+    height: 19px;
+    margin-right: 27px;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .burger::after,
+  .burger::before,
+  .burger > span {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    height: 2.6px;
+    transition: transform 0.2s ease-in-out;
+    content: '';
+    background-color: #363636;
+    border-radius: 2px;
+  }
+
+  .burger::after {
+    top: 0px;
+  }
+
+  .burger::before {
+    bottom: 0px;
+  }
+
+  .burger > span {
+    top: 50%;
+    transform: scale(1) translate(0px, -50%);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .active span,
+  .active::before,
+  .active::after {
+    background-image: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+  }
+
+  .active span {
+    transform: scaleY(0) translate(0px, -50%);
+  }
+
+  .active::before {
+    bottom: 48%;
+    transform: rotate(-45deg) translate(0px, 50%);
+  }
+
+  .active::after {
+    top: 48%;
+    transform: rotate(45deg) translate(0px, -50%);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .burger {
+    top: 5px;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .burger {
+    top: 0;
+    width: 20px;
+    height: 14px;
+    margin-right: 24px;
+  }
+}

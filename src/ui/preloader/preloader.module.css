@@ -1,0 +1,47 @@
+.wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background: rgba(54, 54, 54, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 5;
+}
+
+.preloader {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 69px;
+  height: 69px;
+  text-align: center;
+  background-image: url('https://raw.githubusercontent.com/kate0305/library-image-data/e7260fc1cea607ecccd47890d4f7ad2533594b28/images/svg/loader.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: preloader-rotate 2s infinite linear;
+}
+
+@keyframes preloader-rotate {
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .preloader {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .preloader {
+    width: 22px;
+    height: 22px;
+  }
+}

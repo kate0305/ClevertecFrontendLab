@@ -1,0 +1,33 @@
+.filter {
+  appearance: none;
+  padding: 10px 16px 10px 40px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.1px;
+  color: #A7A7A7;
+  border: none;
+  border-radius: 24px;
+  outline: none;
+  background-image: url('../../../assets/images/svg/rating.svg');
+  background-size: 16px;
+  background-repeat: no-repeat;
+  background-position: left 16px center;
+  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+}
+
+@media (max-width: 320px) {
+
+  .filter {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+    background-position: center;
+    font-size: 0;
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+

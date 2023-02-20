@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 0 6px;
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 62px 0;
+}
+
+.navBar {
+  width: 279px;
+}
+
+.content {
+  width: 100%;
+  max-width: calc(100% - 279px);
+}
+
+@media (max-width: 768px) {
+
+  .wrapper {
+    display: block;
+    padding: 32px 64px 0 64px;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .wrapper {
+    padding: 0 16px 24px 16px;
+  }
+}

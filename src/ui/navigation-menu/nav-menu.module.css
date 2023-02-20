@@ -1,0 +1,22 @@
+.bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 27px;
+}
+
+.container {
+  display: flex;
+  gap: 0 16px ;
+}
+
+@media (max-width: 768px) {
+
+  .bar {
+    padding-bottom: 24px;
+  }
+
+  .hidden {
+    display: none;
+  }
+}

@@ -1,0 +1,25 @@
+.imgTile {
+  width: 174px;
+  height: 242px;
+  margin-bottom: 16px;
+  object-fit: contain;
+}
+
+.imgList {
+  width: 120px;
+  height: 170px;
+  margin-right: 16px;
+}
+
+@media (max-width: 320px) {
+
+  .imgTile {
+    align-self: center;
+  }
+
+  .imgList {
+    width: 70px;
+    height: 100px;
+    margin-right: 8px;
+  }
+}

@@ -1,0 +1,35 @@
+.wrapper {
+  width: 100%;
+  background: #f9f9fa;
+  margin-top: 42px;
+}
+
+.content {
+  max-width: 1110px;
+  margin: 0 auto;
+  padding: 20px 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #a7a7a7;
+}
+
+.separator {
+  width: 24px;
+  padding: 0 4px;
+}
+
+@media (max-width: 768px) {
+
+  .content {
+    padding: 20px 64px;
+  }
+}
+
+@media (max-width: 320px) {
+
+  .content {
+    padding: 20px 16px;
+  }
+}
