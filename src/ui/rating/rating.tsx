@@ -1,11 +1,10 @@
 import classes from './rating.module.css';
 
-export const Rating = () => {
-  const hasRating = (rating: number) => (rating ? true : false);
-
-  return (
-    <div className={classes.wrapper}>
-      {hasRating(1) ? <div className={classes.rating}/> : <p className={classes.text}>еще нет оценок</p>}
-    </div>
-  );
+type RatingProps = {
+  rating: number | null;
 };
+export const Rating = ({ rating }: RatingProps) => (
+  <div className={classes.wrapper}>
+    {rating ? <div className={classes.rating} /> : <p className={classes.noRating}>еще нет оценок</p>}
+  </div>
+);
