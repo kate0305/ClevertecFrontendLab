@@ -34,9 +34,9 @@ export const BookPage = () => {
     <React.Fragment>
       {showToast && createPortal(<Toast onClose={closeToast} />, domElement)}
       <section className={classes.wrapper}>
+        <BreadCrumbs title={bookInfo?.title} currentCategory={currentCategory} />
         {bookInfo && (
           <React.Fragment>
-            <BreadCrumbs title={bookInfo.title} currentCategory={currentCategory} />
             <div className={classes.mainInfo}>
               <BookMainPhoto images={bookInfo.images} />
               <div className={classes.wrap}>
