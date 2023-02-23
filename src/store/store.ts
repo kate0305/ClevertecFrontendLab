@@ -2,10 +2,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { booksAPI } from '../services/book-sevice';
 
+import { booksReduser } from './reducers/books-slice';
 import { burgerReduser } from './reducers/burger-menu-slice';
 
 const rootReducer = combineReducers({
   burgerReduser,
+  booksReduser,
   [booksAPI.reducerPath]: booksAPI.reducer,
 });
 
