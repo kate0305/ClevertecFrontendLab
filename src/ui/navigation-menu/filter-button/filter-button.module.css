@@ -1,18 +1,30 @@
 .filter {
-  appearance: none;
+  align-self: flex-start;
   padding: 10px 16px 10px 40px;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: 0.1px;
-  color: #A7A7A7;
+  color: #a7a7a7;
   border: none;
-  border-radius: 24px;
+  border-radius: 30px;
   outline: none;
   background-image: url('../../../assets/images/svg/rating.svg');
+  background-color: #ffffff;
   background-size: 16px;
   background-repeat: no-repeat;
   background-position: left 16px center;
-  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
+    0px 1px 5px rgba(191, 196, 201, 0.24);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.filter:hover {
+  box-shadow: 0px 3px 4px rgba(222, 125, 11, 0.2), 0px 1px 10px rgba(249, 89, 8, 0.2);
+}
+
+.sortAsc {
+  background-image: url('../../../assets/images/svg/rating-up.svg');
 }
 
 @media (max-width: 320px) {
@@ -30,4 +42,3 @@
     display: none;
   }
 }
-
