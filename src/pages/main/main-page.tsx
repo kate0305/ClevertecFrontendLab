@@ -28,8 +28,9 @@ export const MainPage = () => {
     isError: errBooks,
     isLoading: loadBooks,
     data: booksData,
+    isFetching,
     isSuccess: successCategory,
-  } = booksAPI.useGetListBooksQuery('');
+  } = booksAPI.useGetListBooksQuery('', { refetchOnMountOrArgChange: true });
 
   const {
     data: categoriesData,
@@ -47,7 +48,7 @@ export const MainPage = () => {
   useEffect(() => {
     if (successCategory && successBook) {
       const booksAfterSort = sortBooks(booksData, true);
-
+      
       dispatch(setSortedBooks(booksAfterSort));
     }
   }, [successCategory, categoriesData, booksData, dispatch, setSortedBooks, successBook]);
@@ -64,7 +65,7 @@ export const MainPage = () => {
 
   const domElement = document.getElementById('app') as HTMLElement;
 
-  if (loadBooks || loadCategories) return <Preloader />;
+  if (loadBooks || loadCategories || isFetching) return <Preloader />;
 
   return (
     <React.Fragment>
