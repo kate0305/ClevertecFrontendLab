@@ -20,7 +20,7 @@ export const FilterButton = ({ isHidden }: FilterInputProps) => {
   const handleSort = () => {
     toggleKindOfSort(!kindOfSort);
     const newKindOfSort = sortBooks(sortedBooks, kindOfSort);
-    
+
     dispatch(setSortedBooks(newKindOfSort));
   };
 
@@ -31,7 +31,7 @@ export const FilterButton = ({ isHidden }: FilterInputProps) => {
   });
 
   return (
-    <button onClick={handleSort} className={className} name='rating' type='button'>
+    <button onClick={handleSort} className={className} name='rating' type='button' data-test-id='sort-rating-button'>
       По рейтингу
     </button>
   );
