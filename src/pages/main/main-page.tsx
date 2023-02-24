@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { booksAPI } from '../../services/book-sevice';
 import { booksSlice } from '../../store/reducers/books-slice';
 import { BookList } from '../../ui/book-list';
+import { EmptyList } from '../../ui/empty-list-books';
 import { NavMenu } from '../../ui/navigation-menu';
 import { Preloader } from '../../ui/preloader';
 import { Toast } from '../../ui/toast';
@@ -48,7 +49,7 @@ export const MainPage = () => {
   useEffect(() => {
     if (successCategory && successBook) {
       const booksAfterSort = sortBooks(booksData, true);
-      
+
       dispatch(setSortedBooks(booksAfterSort));
     }
   }, [successCategory, categoriesData, booksData, dispatch, setSortedBooks, successBook]);
@@ -74,7 +75,11 @@ export const MainPage = () => {
         {successCategory && successBook && (
           <React.Fragment>
             <NavMenu setView={setView} />
-            <BookList view={view} books={booksList} />
+            {booksList.length ? (
+              <BookList view={view} books={booksList} />
+            ) : (
+              <EmptyList text='В этой категории книг ещё нет' dataTestId='empty-category' />
+            )}
           </React.Fragment>
         )}
       </section>
