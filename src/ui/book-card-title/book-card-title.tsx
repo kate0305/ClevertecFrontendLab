@@ -1,9 +1,9 @@
 import classes from './book-card-title.module.css';
 
 type BookCardTitleProps = {
-  title: string;
+  title: JSX.Element[];
   authors: string[] | null;
-  view?: string
+  view?: string;
 };
 
 export const BookCardTitle = ({ title, authors, view }: BookCardTitleProps) => (
