@@ -26,7 +26,7 @@ export const BookList = ({ view, books }: BookListProps) => {
     <div className={setView()}>
       {books?.length ? (
         books.map(({ id, image, title, authors, rating }) => (
-          <NavLink to={`/books/${category}/${id}`} data-test-id='card' key={id}>
+          <NavLink to={`/books/${category}/${id}`} data-test-id='card' key={id} className={classes.book}>
             <div className={view === 'list' ? classes.wrapperList : classes.wrapperTile}>
               <BookImg url={image ? `https://strapi.cleverland.by${image.url}` : noImage} view={view} />
               {view === 'tile' ? <Rating rating={rating} /> : ''}
