@@ -25,12 +25,17 @@ input[type='search']::-webkit-search-results-decoration {
   background-position: left 15px center;
   box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
     0px 1px 5px rgba(191, 196, 201, 0.24);
-  cursor: pointer;
+  cursor: text;
+  caret-color: #f83600;
 }
 
 .btnSearch,
 .hidden {
   display: none;
+}
+
+.search:focus {
+  background-image: url('../../../assets/images/svg/search-color.svg');
 }
 
 @media (max-width: 320px) {
@@ -59,6 +64,7 @@ input[type='search']::-webkit-search-results-decoration {
     background-color: #ffffff;
     background-position: center;
     font-size: 0;
+    cursor: pointer;
   }
 
   .openSearch {
@@ -71,7 +77,8 @@ input[type='search']::-webkit-search-results-decoration {
     border: none;
     border-radius: 24px;
     outline: none;
-    cursor: pointer;
+    cursor: text;
+    caret-color: #f83600;
   }
 
   .button {
