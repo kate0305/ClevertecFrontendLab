@@ -3,3 +3,11 @@ export type CategoriesList = {
   path: string;
   id: number;
 };
+
+export type NavMenuProps = {
+  dataTestId?: string;
+};
+
+export type AmountOfBooksInCategory = {
+    [key: string]: number;
+  };

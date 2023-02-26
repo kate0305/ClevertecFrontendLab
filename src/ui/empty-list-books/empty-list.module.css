@@ -1,0 +1,29 @@
+.title {
+  width: 100%;
+  min-height: 500px;
+  padding-top: 200px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  text-align: center;
+  color: #a7a7a7;
+}
+
+@media (max-width: 768px) {
+
+  .title {
+    padding-top: 226px;
+  }
+}
+
+@media (max-width: 320px) {
+    
+  .title {
+    min-height: 300px;
+    padding-top: 134px;
+    padding-bottom: 152px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+}

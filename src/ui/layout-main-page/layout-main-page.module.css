@@ -1,4 +1,5 @@
 .wrapper {
+  min-height: calc(100vh - 208px);
   display: flex;
   justify-content: space-between;
   gap: 0 6px;
@@ -19,6 +20,7 @@
 @media (max-width: 768px) {
 
   .wrapper {
+    min-height: calc(100vh - 182px);
     display: block;
     padding: 32px 64px 0 64px;
   }
@@ -31,6 +33,7 @@
 @media (max-width: 320px) {
 
   .wrapper {
+    min-height: calc(100vh - 188px);
     padding: 0 16px 24px 16px;
   }
 }

@@ -41,7 +41,9 @@ export const BookPage = () => {
               <BookMainPhoto images={bookInfo.images} />
               <div className={classes.wrap}>
                 <div className={classes.bookData}>
-                  <h1 className={classes.title}>{bookInfo.title}</h1>
+                  <h1 className={classes.title} data-test-id='book-title'>
+                    {bookInfo.title}
+                  </h1>
                   <p className={classes.autor}>{bookInfo.authors}</p>
                   <Button text='Забронировать' className='btnBook' />
                 </div>

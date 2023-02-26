@@ -5,6 +5,6 @@ type RatingProps = {
 };
 export const Rating = ({ rating }: RatingProps) => (
   <div className={classes.wrapper}>
-    {rating ? <div className={classes.rating} /> : <p className={classes.noRating}>еще нет оценок</p>}
+    {rating === null ? <p className={classes.noRating}>еще нет оценок</p> : <div className={classes.rating} />}
   </div>
 );
