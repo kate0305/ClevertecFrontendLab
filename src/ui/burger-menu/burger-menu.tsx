@@ -1,9 +1,9 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import classnames from 'classnames/bind';
 
-import { useOutsideAlerterBurger } from '../../custom-hooks';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { openMenu, toggleMenu } from '../../store/reducers/burger-menu-slice';
+import { closeMenu, toggleMenu } from '../../store/reducers/burger-menu-slice';
+import { NavBar } from '../nav-bar';
 
 import classes from './burger-menu.module.css';
 
@@ -15,7 +15,19 @@ export const BurgerMenu = () => {
   const handle = () => dispatch(toggleMenu());
   const navMenu = useRef<HTMLDivElement>(null);
 
-  useOutsideAlerterBurger(navMenu, handle);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navMenu.current && !navMenu.current.contains(event.target as Node)) {
+        dispatch(closeMenu());
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dispatch]);
 
   const className = style({
     burger: true,
@@ -23,15 +35,18 @@ export const BurgerMenu = () => {
   });
 
   return (
-    <div
-      className={className}
-      data-test-id='button-burger'
-      onClick={handle}
-      onKeyDown={handle}
-      role='button'
-      tabIndex={0}
-    >
-      <span />
+    <div ref={navMenu}>
+      <div
+        className={className}
+        data-test-id='button-burger'
+        onClick={handle}
+        onKeyDown={handle}
+        role='button'
+        tabIndex={0}
+      >
+        <span />
+      </div>
+      {isBurgerOpen && <NavBar dataTestId='burger-navigation' />}
     </div>
   );
 };
