@@ -1,36 +1,50 @@
-import { useEffect, useRef, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+/* eslint-disable no-param-reassign */
+import { useEffect, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import classnames from 'classnames/bind';
 
-import { useOutsideAlerter } from '../../custom-hooks';
-import data from '../../data/books.json';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { booksAPI } from '../../services/book-sevice';
-import { closeMenu, toggleMenu } from '../../store/reducers/burger-menu-slice';
+import { closeMenu } from '../../store/reducers/burger-menu-slice';
 import { PAGE_PATHS } from '../../utils/consts';
+import { AmountOfBooksInCategory, NavMenuProps } from '../../utils/types/navbar';
 import { ButtonDropdown } from '../buttons/btn-dropdown';
 
 import classes from './nav-bar.module.css';
 
 const style = classnames.bind(classes);
 
-export const NavBar = () => {
-  const { data: categoriesData } = booksAPI.useGetCategoriesQuery();
-  const navMenu = useRef<HTMLElement>(null);
-  const isBurgerOpen = useAppSelector((state) => state.burgerReduser.isMenuOpen);
+export const NavBar = ({ dataTestId }: NavMenuProps) => {
+  const [isOpenBooksCaregorty, setOpenBooksCaregorty] = useState<boolean>(true);
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const { pathname } = useLocation();
+
   const dispatch = useAppDispatch();
-  const handle = () => dispatch(toggleMenu());
   const close = () => dispatch(closeMenu());
+  const isBurgerOpen = useAppSelector((state) => state.burgerReduser.isMenuOpen);
+
+  const { data: categoriesData } = booksAPI.useGetCategoriesQuery();
+  const { data: booksData } = booksAPI.useGetListBooksQuery('');
+
+  const categoriesArray = booksData?.map(({ categories }) => categories ?? '').flat();
+
+  const amountOfBooks = categoriesArray?.reduce((prev, cur) => {
+    prev[cur] = (prev[cur] || 0) + 1;
+
+    return prev;
+  }, {} as AmountOfBooksInCategory);
+
+  const getNumberOfBooks = (category: AmountOfBooksInCategory, key: string) => (category[key] > 0 ? category[key] : 0);
+
   const setActive = ({ isActive }: { isActive: boolean }) => (isActive ? classes.active : classes.link);
   const setActiveGenre = ({ isActive }: { isActive: boolean }) => (isActive ? classes.activeGenre : classes.genre);
-  const [isOpen, setOpen] = useState<boolean>(true);
-  const toggleBooksList = () => setOpen(!isOpen);
+
+  const toggleBooksList = () => setOpenBooksCaregorty(!isOpenBooksCaregorty);
   const closeBooksList = () => {
-    setOpen(false);
+    setOpenBooksCaregorty(false);
     close();
   };
-
-  const [width, setWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
@@ -42,6 +56,11 @@ export const NavBar = () => {
     };
   }, []);
 
+  const books = style({
+    showcase: true,
+    active: pathname.includes('books'),
+  });
+
   const className = style({
     wrapper: true,
     burger: isBurgerOpen,
@@ -49,36 +68,53 @@ export const NavBar = () => {
 
   const list = style({
     list: true,
-    hidden: !isOpen,
+    hidden: !isOpenBooksCaregorty,
   });
 
-  const amountBooks = Object.values(data);
-
-  useOutsideAlerter(navMenu, close, isBurgerOpen);
-
   return (
-    <nav className={className} data-test-id={isBurgerOpen ? 'burger-navigation' : ''} ref={navMenu}>
+    <nav className={className} data-test-id={dataTestId}>
       <div>
-        <NavLink
-          to='/books/all'
-          className={setActive}
-          style={{ marginBottom: '16px' }}
-          data-test-id={isBurgerOpen ? 'burger-showcase' : 'navigation-showcase'}
-          onClick={toggleBooksList}
-        >
-          Витрина книг
-          {categoriesData ? <ButtonDropdown isOpen={isOpen} isColor={true} /> : ''}
-        </NavLink>
-        {categoriesData && (
-          <ul className={list} data-test-id={width < 800 ? 'burger-books' : 'navigation-books'}>
-            <NavLink to='/books/all' className={setActiveGenre}>
+        <div className={books}>
+          <NavLink
+            to='/books/all'
+            className={classes.link}
+            data-test-id={isBurgerOpen ? 'burger-showcase' : 'navigation-showcase'}
+            onClick={toggleBooksList}
+          >
+            Витрина книг
+          </NavLink>
+          {pathname.includes('books') && (
+            <ButtonDropdown isOpen={isOpenBooksCaregorty} isColor={true} onClick={toggleBooksList} />
+          )}
+        </div>
+
+        {categoriesData && isOpenBooksCaregorty && (
+          <ul className={list}>
+            <NavLink
+              to='/books/all'
+              className={setActiveGenre}
+              data-test-id={width < 800 ? 'burger-books' : 'navigation-books'}
+              onClick={close}
+            >
               Все книги
             </NavLink>
-            {categoriesData.map(({ id, path, name }, index) => (
-              <NavLink to={`/books/${path}`} key={`${id}`} className={setActiveGenre} onClick={handle}>
-                {name}
-                <span className={classes.amount}>{amountBooks[index].length}</span>
-              </NavLink>
+            {categoriesData.map(({ id, path, name }) => (
+              <div key={`${id}`}>
+                <NavLink
+                  to={`/books/${path}`}
+                  className={setActiveGenre}
+                  onClick={close}
+                  data-test-id={isBurgerOpen ? `burger-${path}` : `navigation-${path}`}
+                >
+                  {name}
+                </NavLink>
+                <span
+                  className={classes.amount}
+                  data-test-id={isBurgerOpen ? `burger-book-count-for-${path}` : `navigation-book-count-for-${path}`}
+                >
+                  {amountOfBooks && getNumberOfBooks(amountOfBooks, name)}
+                </span>
+              </div>
             ))}
           </ul>
         )}
