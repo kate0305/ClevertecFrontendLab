@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { FieldError,UseFormRegister } from 'react-hook-form';
+import { FieldError,UseFormGetValues,UseFormRegister } from 'react-hook-form';
 
 export type RegistrationFormValues = {
   username: string;
@@ -19,12 +19,14 @@ export type InputPrimaryProps = {
   placeholder: string;
   labelText?: string;
   error: FieldError | undefined;
-  value: string;
-  uniqueStyle?: string;
+  value: string | undefined;
+  isNotValid?: boolean;
+  //   getValues: UseFormGetValues<RegistrationFormValues>;
 };
 
 export type InputsProps = {
   register: UseFormRegister<RegistrationFormValues>;
   error: FieldError | undefined;
-  isDirty?: boolean | undefined
+  isDirty?: boolean | undefined;
+  value?: string | undefined;
 };
