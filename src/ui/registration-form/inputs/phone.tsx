@@ -3,12 +3,9 @@ import { useState } from 'react';
 import { InputsProps } from '../../../utils/types/registration';
 import { InputPrimary } from '../../input-primary';
 
-export const PhoneInput = ({ register, error }: InputsProps) => {
-  const [value, setValue] = useState('');
+export const PhoneInput = ({ register, error, value }: InputsProps) => {
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
+const mask = ''
 
   return (
     <InputPrimary
@@ -36,7 +33,6 @@ export const PhoneInput = ({ register, error }: InputsProps) => {
       //   /\d/,
       // ]}
       {...register('phone', {
-        onChange: handleChange,
         required: 'Поле не может быть пустым',
       })}
       error={error}

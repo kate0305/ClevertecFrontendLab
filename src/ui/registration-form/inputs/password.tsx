@@ -6,20 +6,25 @@ import { InputPrimary } from '../../input-primary';
 
 import classes from './password.module.css';
 
-export const PasswordInput = ({ register, error, isDirty }: InputsProps) => {
-  const [value, setValue] = useState('');
+export const PasswordInput = ({ register, error, isDirty, value }: InputsProps) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false);
   const [isValid, setValid] = useState<boolean>(false);
+  const [isNotValid, setNotValid] = useState<boolean>(false);
 
   useEffect(() => {
     if (isDirty && !error?.message) setValid(true);
     else setValid(false);
-  }, [error, isDirty])
+  }, [error, isDirty]);
+
+  const handleBlur = () => {
+    if (error?.message) setNotValid(true);
+    else setNotValid(false);
+  };
 
   const toggleEye = () => setEyeOpen(!isEyeOpen);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+  const handleChange = () => {
+    setNotValid(false);
   };
 
   return (
@@ -27,6 +32,7 @@ export const PasswordInput = ({ register, error, isDirty }: InputsProps) => {
       <InputPrimary
         {...register('password', {
           onChange: handleChange,
+          onBlur: handleBlur,
           required: 'Поле не может быть пустым',
           validate: (v) => {
             const arr = [];
@@ -38,7 +44,7 @@ export const PasswordInput = ({ register, error, isDirty }: InputsProps) => {
             if (typeof checkCapitalLetter === 'string') arr.push(checkCapitalLetter);
             if (typeof checkNumber === 'string') arr.push(checkNumber);
 
-            return arr.join(' ');
+            return arr.length ? arr.join(' ') : true;
           },
         })}
         error={error}
@@ -48,7 +54,7 @@ export const PasswordInput = ({ register, error, isDirty }: InputsProps) => {
         placeholder='Пароль'
         labelText='Пароль не менее 8 символов, с заглавной буквой и цифрой'
         value={value}
-        uniqueStyle='eye'
+        isNotValid={isNotValid}
       />
       <span className={isValid ? classes.isValid : classes.hide} data-test-id='checkmark' />
       <ButtonEye onClick={toggleEye} isOpen={isEyeOpen} />

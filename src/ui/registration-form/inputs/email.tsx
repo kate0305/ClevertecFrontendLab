@@ -1,19 +1,9 @@
-import { useState } from 'react';
-
 import { InputsProps } from '../../../utils/types/registration';
 import { InputPrimary } from '../../input-primary';
 
-export const EmailInput = ({ register, error }: InputsProps) => {
-  const [value, setValue] = useState('');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
-  return (
+export const EmailInput = ({ register, error, value }: InputsProps) => (
     <InputPrimary
       {...register('email', {
-        onChange: handleChange,
         required: 'Поле не может быть пустым',
         pattern: {
           value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -28,4 +18,3 @@ export const EmailInput = ({ register, error }: InputsProps) => {
       placeholder='E-mail'
     />
   );
-};
