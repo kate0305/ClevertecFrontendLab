@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { InputsProps } from '../../../utils/types/registration';
+import { InputsRegistrProps } from '../../../utils/types/registration';
 import { ButtonEye } from '../../buttons/btn-eye';
 import { InputPrimary } from '../../input-primary';
 
 import classes from './password.module.css';
 
-export const PasswordInput = ({ register, error, isDirty, value }: InputsProps) => {
+export const PasswordInput = ({ register, error, isDirty, value }: InputsRegistrProps) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false);
   const [isValid, setValid] = useState<boolean>(false);
   const [isNotValid, setNotValid] = useState<boolean>(false);
@@ -36,7 +36,7 @@ export const PasswordInput = ({ register, error, isDirty, value }: InputsProps) 
           required: 'Поле не может быть пустым',
           validate: (v) => {
             const arr = [];
-            const checkLenght = v.length > 8 || 'не менее 8 символов';
+            const checkLenght = v.length > 7 || 'не менее 8 символов';
             const checkCapitalLetter = /[A-Z]/.test(v) || 'заглавной буквой';
             const checkNumber = /\d/.test(v) || 'цифрой';
 
@@ -56,7 +56,7 @@ export const PasswordInput = ({ register, error, isDirty, value }: InputsProps) 
         value={value}
         isNotValid={isNotValid}
       />
-      <span className={isValid ? classes.isValid : classes.hide} data-test-id='checkmark' />
+      {isValid && <span className={classes.isValid} data-test-id='checkmark' />}
       <ButtonEye onClick={toggleEye} isOpen={isEyeOpen} />
     </div>
   );

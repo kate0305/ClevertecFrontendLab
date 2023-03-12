@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import { InputsProps } from '../../../utils/types/registration';
+import { InputsRegistrProps } from '../../../utils/types/registration';
 import { InputPrimary } from '../../input-primary';
 
-export const LoginInput = ({ register, error, value }: InputsProps) => {
-//   const [value, setValue] = useState('');
+export const LoginInput = ({ register, error, value }: InputsRegistrProps) => {
+  //   const [value, setValue] = useState('');
   const [isNotValid, setNotValid] = useState<boolean>(false);
 
   const handleBlur = () => {
