@@ -1,38 +1,103 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
+import { Controller,SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import MaskedInput from 'react-text-mask';
 
+import { useAppDispatch } from '../../../hooks/redux';
+import { booksAPI } from '../../../services/book-sevice';
+import { setRegistrationData } from '../../../store/reducers/user-slice';
 import { RegistrationFormValues } from '../../../utils/types/registration';
 import { Button } from '../../buttons/btn-primary';
+import { InputPrimary } from '../../input-primary';
+import { Preloader } from '../../preloader';
 import { EmailInput, FirstNameInput, LastNameInput, LoginInput, PasswordInput, PhoneInput } from '../inputs';
-
-import classes from '../registration-form.module.css';
+import { FormNotice } from '../registration-form';
 
 type FormProps = {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
+  closeForm: () => void;
+  setTypeErr: (err: FormNotice) => void;
 };
 
-export const Form = ({ step, setStep }: FormProps) => {
+export const Form = ({ step, setStep, closeForm, setTypeErr }: FormProps) => {
+  const dispatch = useAppDispatch();
+
   const {
     register,
     trigger,
-    getValues,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
+    watch,
     handleSubmit,
     getFieldState,
+    reset,
+    control,
   } = useForm<RegistrationFormValues>({ mode: 'onChange' });
 
   const { isDirty } = getFieldState('password');
 
-//   console.log(errPsw);
+  const [registrationUser, { isLoading, isSuccess, error, isError }] = booksAPI.useRegistrationUserMutation();
 
+  //   console.log(errPsw);
+  const [cookies, setCookie] = useCookies(['clever']);
+  const navigate = useNavigate();
   const [disabled, setbtnDisabled] = useState<boolean>(false);
 
-  const buttonText = ['Cледующий шаг', 'Последний шаг', 'Зарегистрироваться'];
+  const buttonText = ['следующий шаг', 'последний шаг', 'зарегистрироваться'];
 
-  const onSubmit: SubmitHandler<RegistrationFormValues> = (data: RegistrationFormValues) => {
+  const onSubmit: SubmitHandler<RegistrationFormValues> = async (data: RegistrationFormValues) => {
+    dispatch(setRegistrationData(data));
     console.log('data', data);
+    registrationUser(data);
+    // try {
+    //   const result = await registrationUser(data).unwrap();
+
+    //   if (result) {
+    //     // dispatch(setUser({ user: result.user, token: result.jwt}));
+    //     setCookie('clever', result.jwt, { path: '/' });
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    // const result = await registrationUser(data)
+    //   .unwrap()
+    // //   .catch((error) => console.log(error));
+
+    // dispatch(setUser(result));
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      console.log('Success');
+      setTypeErr('success');
+      dispatch(setRegistrationData(null));
+      closeForm();
+    }
+    if (error) {
+      if ('status' in error) {
+        // you can access all properties of `FetchBaseQueryError` here
+        //  const errMsg = 'error' in error ? error.error : JSON.stringify(error.data);
+        console.log(error.status);
+        if (error.status === 400) {
+          setTypeErr('err400');
+          reset();
+          closeForm();
+        } else {
+          setTypeErr('err');
+          closeForm();
+        }
+        // onSubmit(data);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [error, isLoading, isSuccess, navigate, closeForm, reset, setTypeErr]);
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   const handleFormChange = () => {
     if (disabled) setbtnDisabled(false);
@@ -54,32 +119,49 @@ export const Form = ({ step, setStep }: FormProps) => {
     return isFieldValid ? setStep(step + 1) : setbtnDisabled(true);
   };
 
+  const mask = ['+', '3', '7', '5', ' ', '(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, '-', /\d/, /\d/];
+
   const currentInputs = () => {
     switch (step) {
       case 0:
         return (
           <React.Fragment>
-            <LoginInput register={register} error={errors.username} value={getValues('username')} />
+            <LoginInput register={register} error={errors.username} value={watch('username')} />
             <PasswordInput
               register={register}
               error={errors.password}
               isDirty={isDirty}
-              value={getValues('password')}
+              value={watch('password')}
             />
           </React.Fragment>
         );
       case 1:
         return (
           <React.Fragment>
-            <FirstNameInput register={register} error={errors.firstName} value={getValues('firstName')} />
-            <LastNameInput register={register} error={errors.lastName} value={getValues('lastName')} />
+            <FirstNameInput register={register} error={errors.firstName} value={watch('firstName')} />
+            <LastNameInput register={register} error={errors.lastName} value={watch('lastName')} />
           </React.Fragment>
         );
       case 2:
         return (
           <React.Fragment>
-            <PhoneInput register={register} error={errors.phone} value={getValues('phone')} />
-            <EmailInput register={register} error={errors.email} value={getValues('email')} />
+            <Controller
+              name='phone'
+              control={control}
+              defaultValue=''
+              rules={{
+                required: 'Поле не может быть пустым',
+                pattern: {
+                  value: /^\+375(\s+)?\(?(29|33|44)\)?(\s+)?[0-9]{3}-[0-9]{2}-[0-9]{2}$/,
+                  message: 'В формате +375 (xx) xxx-xx-xx',
+                },
+              }}
+              render={({ field, fieldState: { error } }) => <PhoneInput error={error} value={field.value} />}
+              //   register={register}
+              //   error={errors.phone}
+              //   value={watch('phone')}
+            />
+            <EmailInput register={register} error={errors.email} value={watch('email')} />
           </React.Fragment>
         );
       default:
@@ -92,12 +174,24 @@ export const Form = ({ step, setStep }: FormProps) => {
     }
   };
 
+  if (isLoading) return <Preloader />;
+
   return (
     <React.Fragment>
       <form data-test-id='register-form' id='form' onChange={handleFormChange}>
         {currentInputs()}
+        <Button
+          disabled={disabled}
+          form='form'
+          text={buttonText[step]}
+          className='btnRegistration'
+          id='btn'
+          //   type={step === 2 ? 'submit' : 'button'}
+          onClick={step === 2 ? handleSubmit(onSubmit) : handleNextStep}
+          type='button'
+        />
       </form>
-      <div className={classes.footer}>
+      {/* <div className={classes.footer}>
         <Button
           disabled={disabled}
           form='form'
@@ -114,7 +208,7 @@ export const Form = ({ step, setStep }: FormProps) => {
             Войти
           </button>
         </div>
-      </div>
+      </div> */}
     </React.Fragment>
   );
 };

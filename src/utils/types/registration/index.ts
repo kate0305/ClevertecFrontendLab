@@ -39,6 +39,7 @@ export type InputPrimaryProps = {
   error: FieldError | undefined;
   value: string | undefined;
   isNotValid?: boolean;
+  touchedFields?: boolean | undefined;
   //   getValues: UseFormGetValues<RegistrationFormValues>;
 };
 

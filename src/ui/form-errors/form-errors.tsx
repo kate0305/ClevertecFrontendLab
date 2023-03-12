@@ -5,14 +5,14 @@ import classes from './form-errors.module.css';
 type FormErrorsProps = {
   title: string;
   text: string;
-  btnText: string;
+  btnText?: string;
   onClick?: () => void;
 }
 
 export const FormErrors = ({ title, text, btnText, onClick }: FormErrorsProps) => (
-  <div className={classes.wrapper}>
+  <div className={classes.wrapper} data-test-id='status-block'>
     <h1 className={classes.title}>{title}</h1>
     <p className={classes.text}>{text}</p>
-    <Button text={btnText} type='button' className='btnFormErr' onClick={onClick} />
+    {btnText && <Button text={btnText} type='button' className='btnFormErr' onClick={onClick} />}
   </div>
 );
