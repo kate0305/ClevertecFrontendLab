@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { FieldError,UseFormGetValues,UseFormRegister } from 'react-hook-form';
+import { FieldError, UseFormRegister } from 'react-hook-form';
 
 export type RegistrationFormValues = {
   username: string;
@@ -8,6 +8,24 @@ export type RegistrationFormValues = {
   lastName: string;
   phone: string;
   email: string;
+};
+
+export type AuthFormValues = {
+  identifier: string;
+  password: string;
+};
+
+export type RecoveryFormValues = {
+  email: string;
+};
+
+export interface ForgotFormValues {
+  password: string;
+  passwordConfirmation: string;
+};
+
+export interface ForgotFormReq extends ForgotFormValues {
+  code: string | null;
 };
 
 export type InputPrimaryProps = {
@@ -24,8 +42,23 @@ export type InputPrimaryProps = {
   //   getValues: UseFormGetValues<RegistrationFormValues>;
 };
 
-export type InputsProps = {
+interface InputsProps {
+  error: FieldError | undefined;
+  isDirty?: boolean | undefined;
+  value?: string | undefined;
+}
+
+export interface InputsRegistrProps extends InputsProps {
   register: UseFormRegister<RegistrationFormValues>;
+};
+
+export interface InputsForgotProps extends InputsProps {
+  register: UseFormRegister<ForgotFormValues>;
+  newPassword?: string;
+};
+
+
+export type InputsTelProps = {
   error: FieldError | undefined;
   isDirty?: boolean | undefined;
   value?: string | undefined;
