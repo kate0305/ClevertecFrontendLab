@@ -9,6 +9,7 @@ import { closeMenu } from '../../store/reducers/burger-menu-slice';
 import { PAGE_PATHS } from '../../utils/consts';
 import { AmountOfBooksInCategory, NavMenuProps } from '../../utils/types/navbar';
 import { ButtonDropdown } from '../buttons/btn-dropdown';
+import { UserButtons } from '../user/user-buttons';
 
 import classes from './nav-bar.module.css';
 
@@ -135,6 +136,7 @@ export const NavBar = ({ dataTestId }: NavMenuProps) => {
       >
         Договор оферты
       </NavLink>
+      {width < 800 && <UserButtons isNavBar={true}/>}
     </nav>
   );
 };

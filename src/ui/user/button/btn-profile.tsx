@@ -1,8 +1,4 @@
-import classnames from 'classnames/bind';
-
 import classes from './btn-profile.module.css';
-
-const style = classnames.bind(classes);
 
 export type ButtonProfileProps = {
   onClick?: () => void;
@@ -10,14 +6,8 @@ export type ButtonProfileProps = {
   dataTest?: string;
 };
 
-export const ButtonProfile = ({ onClick, text, dataTest }: ButtonProfileProps) => {
-  const dropdown = style({
-    dropdown: true,
-  });
-
-  return (
+export const ButtonProfile = ({ onClick, text, dataTest }: ButtonProfileProps) => (
     <button className={classes.button} onClick={onClick} data-test-id={dataTest} type='button'>
       {text}
     </button>
   );
-};

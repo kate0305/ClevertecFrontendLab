@@ -9,3 +9,9 @@
   border: none;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+
+  .button {
+    text-align: start;
+  }
+}
