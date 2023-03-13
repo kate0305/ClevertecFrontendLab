@@ -4,7 +4,7 @@ import { InputsRegistrProps } from '../../../utils/types/registration';
 import { ButtonEye } from '../../buttons/btn-eye';
 import { InputPrimary } from '../../input-primary';
 
-import classes from './password.module.css';
+import classes from './inputs.module.css';
 
 export const PasswordInput = ({ register, error, isDirty, value }: InputsRegistrProps) => {
   const [isEyeOpen, setEyeOpen] = useState<boolean>(false);

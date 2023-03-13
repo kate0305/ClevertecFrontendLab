@@ -1,10 +1,9 @@
-import { Cookies } from 'react-cookie';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { RootState } from '../store/store';
-import { BookData, IResponse, ListOfBooks, LoginInfo, RecoveryInfo, User, UserResponse } from '../utils/types/book';
+import { BookData, ListOfBooks, LoginInfo, RecoveryInfo, UserResponse } from '../utils/types/book';
 import { CategoriesList } from '../utils/types/navbar';
-import { AuthFormValues, ForgotFormReq, ForgotFormValues, RecoveryFormValues, RegistrationFormValues } from '../utils/types/registration';
+import { AuthFormValues, ForgotFormReq, RecoveryFormValues, RegistrationFormValues } from '../utils/types/registration';
 
 export const booksAPI = createApi({
   reducerPath: 'booksAPI',
@@ -13,7 +12,7 @@ export const booksAPI = createApi({
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
       const { isAuth, token } = (getState() as RootState).userReduser;
-      console.log(token);
+
       if (isAuth) {
         headers.set('Authorization', `Bearer ${token}`);
       }
@@ -50,15 +49,6 @@ export const booksAPI = createApi({
           credentials: 'include',
         };
       },
-
-      //   async onQueryStarted(args, { dispatch, queryFulfilled }) {
-      //     try {
-      //       await queryFulfilled;
-      //       await dispatch(userApi.endpoints.getMe.initiate(null));
-      //     } catch (error) {
-      //       console.log(error);
-      //     }
-      //   },
     }),
     recoveryPassword: build.mutation<RecoveryInfo, RecoveryFormValues>({
       query(data) {
