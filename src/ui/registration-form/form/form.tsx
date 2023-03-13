@@ -136,7 +136,6 @@ export const Form = ({ step, setStep, closeForm, setTypeErr }: FormProps) => {
           text={buttonText[step]}
           className='btnRegistration'
           id='btn'
-          //   type={step === 2 ? 'submit' : 'button'}
           onClick={step === 2 ? handleSubmit(onSubmit) : handleNextStep}
           type='button'
         />

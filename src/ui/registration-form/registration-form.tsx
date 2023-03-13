@@ -64,6 +64,7 @@ export const RegistrationForm = () => {
       linkTo={PAGE_PATHS.authPagePath}
       linkText='Войти'
       dataTest='register-form'
+      enter={true}
     />
   ) : (
     <FormErrors {...formToastData[err]} />

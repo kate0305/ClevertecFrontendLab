@@ -11,6 +11,7 @@ type FormAutWrapperProps = {
   linkText: string;
   navToAuth?: JSX.Element;
   dataTest?: string;
+  enter?: boolean;
 };
 
 export const FormAuthWrapper = ({
@@ -22,6 +23,7 @@ export const FormAuthWrapper = ({
   linkText,
   navToAuth,
   dataTest,
+  enter,
 }: FormAutWrapperProps) => (
   <div data-test-is={dataTest}>
     {navToAuth}
@@ -34,7 +36,7 @@ export const FormAuthWrapper = ({
       <div className={classes.footer}>
         <div className={classes.container}>
           <p className={classes.question}>{question}</p>
-          <NavLink to={linkTo} className={classes.link}>
+          <NavLink to={linkTo} className={enter ? classes.enter : classes.link}>
             {linkText}
           </NavLink>
         </div>

@@ -42,7 +42,8 @@
   color: #727272;
 }
 
-.link {
+.link,
+.enter {
   width: 84px;
   align-self: center;
   font-weight: 600;
@@ -51,11 +52,14 @@
   letter-spacing: 0.2px;
   text-transform: uppercase;
   color: #363636;
+  cursor: pointer;
+}
+
+.enter {
   background-image: url('../../assets/images/svg/arrow-right.svg');
   background-size: 24px;
   background-position: right;
   background-repeat: no-repeat;
-  cursor: pointer;
 }
 
 @media (max-width: 650px) {
